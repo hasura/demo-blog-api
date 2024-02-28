@@ -1,0 +1,251 @@
+definitions:
+  main.author:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  main.blog:
+    properties:
+      author:
+        $ref: '#/definitions/main.author'
+      dislikes:
+        type: integer
+      id:
+        type: integer
+      likes:
+        type: integer
+      summary:
+        type: string
+      text:
+        type: string
+      title:
+        type: string
+    type: object
+  main.blogRequestDto:
+    properties:
+      authorId:
+        type: integer
+      dislikes:
+        type: integer
+      id:
+        type: integer
+      likes:
+        type: integer
+      summary:
+        type: string
+      text:
+        type: string
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /author:
+    post:
+      description: create a new author
+      parameters:
+      - description: new author to be added
+        in: body
+        name: author
+        required: true
+        schema:
+          $ref: '#/definitions/main.author'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.author'
+      summary: create author
+      tags:
+      - author
+  /author/{authorId}:
+    delete:
+      description: delete an author
+      parameters:
+      - description: delete author
+        in: path
+        name: authorId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.author'
+      summary: delete author
+      tags:
+      - author
+  /authors:
+    get:
+      consumes:
+      - application/json
+      description: get all authors
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.author'
+            type: array
+      summary: get all authors
+      tags:
+      - author
+  /blog/:
+    post:
+      description: create a new blog post
+      parameters:
+      - description: post to add
+        in: body
+        name: blog
+        required: true
+        schema:
+          $ref: '#/definitions/main.blogRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.blog'
+      summary: create a new blog post
+      tags:
+      - blog
+    put:
+      description: update a blog post
+      parameters:
+      - description: blog to update
+        in: body
+        name: blog
+        required: true
+        schema:
+          $ref: '#/definitions/main.blogRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.blog'
+      summary: update a  blog post
+      tags:
+      - blog
+  /blog/{blogId}:
+    delete:
+      description: delete a blog post
+      parameters:
+      - description: blog to delete
+        in: path
+        name: blogId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.blog'
+      summary: delete a blog post
+      tags:
+      - blog
+    patch:
+      description: update a blog post
+      parameters:
+      - description: blog to update
+        in: path
+        name: blogId
+        required: true
+        type: string
+      - description: title to update
+        in: query
+        name: title
+        type: string
+      - description: text to update
+        in: query
+        name: text
+        type: string
+      - description: summary to update
+        in: query
+        name: summary
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.blog'
+      summary: update a blog post
+      tags:
+      - blog
+  /blog/dislike:
+    patch:
+      description: dislike a blog post
+      parameters:
+      - description: blog to dislike
+        in: query
+        name: blogId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.blog'
+      summary: dislike a blog post
+      tags:
+      - blog
+  /blog/like:
+    patch:
+      description: like a blog post
+      parameters:
+      - description: blog to like
+        in: query
+        name: blogId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.blog'
+      summary: like a blog post
+      tags:
+      - blog
+  /blogs/:
+    get:
+      description: get blogs by author
+      parameters:
+      - description: id of the author
+        in: query
+        name: authorId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.blog'
+            type: array
+      summary: get blogs by author
+      tags:
+      - blog
+swagger: "2.0"
