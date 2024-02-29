@@ -1,5 +1,5 @@
 # Demo Blog API
-This is simple API with in memory data created to be used during the demo of Hasura's Open API Connector.
+This a is simple API with in memory data created to be used during the demo of Hasura's Open API Connector.
 
 ### Warning
 The Open API Connector is active under developement. It has known limitations and may breakdown in certain cases.
@@ -20,6 +20,6 @@ npx yo hasura-ndc-nodejs-lambda --open-api $path-open-api-doc-file --base-url "h
 You should have a connector running that you can use in your project's metadata.
 
 # References
-Open API Spec: https://swagger.io/specification/
-NodeJS Lamda Connector: https://github.com/hasura/ndc-nodejs-lambda/tree/main
-Supergraph Modeling/Hasura Metadata: https://hasura.io/docs/3.0/supergraph-modeling/introduction
+- Open API Spec: https://swagger.io/specification/
+- NodeJS Lamda Connector: https://github.com/hasura/ndc-nodejs-lambda/tree/main
+- Supergraph Modeling/Hasura Metadata: https://hasura.io/docs/3.0/supergraph-modeling/introduction
